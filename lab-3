@@ -22,39 +22,39 @@ cqlsh:library_214> create table lib_info(stud_id int , counter_val  counter, stu
 SyntaxException: line 1:180 mismatched input ';' expecting ')' (...stud_id,stud_name,book_name,book_id,issue_date)[;])
 cqlsh:library_214> create table lib_info(stud_id int , counter_val  counter, stud_name text, book_name text, book_id int, issue_date date, PRIMARY KEY (stud_id,stud_name,book_name,book_id,issue_date));
 cqlsh:library_214> begin batch
-               ... insert into lib_info(stud_id,stud_name,book_name,book_id,issue_date) values (121,'rohit','java',1140,'2022-05-07')
+               ... insert into lib_info(stud_id,stud_name,book_name,book_id,issue_date) values (121,'ruben','java',1140,'2022-05-07')
                ... apply batch;
 InvalidRequest: Error from server: code=2200 [Invalid query] message="INSERT statements are not allowed on counter tables, use UPDATE instead"
-cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=1 and stud_name='rohit' and book_name='oomd' and book_id=121 and issue_date='2022-05-06';
+cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=1 and stud_name='ruben' and book_name='oomd' and book_id=121 and issue_date='2022-05-06';
 cqlsh:library_214> select * from lib_info;
 
  stud_id | stud_name | book_name | book_id | issue_date | counter_val
 ---------+-----------+-----------+---------+------------+-------------
-       1 |    rohit  |      oomd |     121 | 2022-05-06 |           1
+       1 |    ruben  |      oomd |     121 | 2022-05-06 |           1
 
 (1 rows)
-cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=2 and stud_name='trivedi' and book_name='bda' and book_id=122 and issue_date='2022-04-06';
-cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=3 and stud_name='swaroop' and book_name='java' and book_id=123 and issue_date='2022-04-10';
-cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=4 and stud_name='nikhil' and book_name='ml' and book_id=124 and issue_date='2022-03-10';
+cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=2 and stud_name='adil' and book_name='bda' and book_id=122 and issue_date='2022-04-06';
+cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=3 and stud_name='sush' and book_name='java' and book_id=123 and issue_date='2022-04-10';
+cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=4 and stud_name='rasal' and book_name='ml' and book_id=124 and issue_date='2022-03-10';
 cqlsh:library_214> select * from lib_info;
 
  stud_id | stud_name | book_name | book_id | issue_date | counter_val
 ---------+-----------+-----------+---------+------------+-------------
-       1 |     rohit |      oomd |     121 | 2022-05-06 |           1
-       2 |   trivedi |       bda |     122 | 2022-04-06 |           1
-       4 |    nikhil |        ml |     124 | 2022-03-10 |           1
-       3 |   swaroop |      java |     123 | 2022-04-10 |           1
+       1 |     ruben |      oomd |     121 | 2022-05-06 |           1
+       2 |   adil |       bda |     122 | 2022-04-06 |           1
+       4 |    rasal |        ml |     124 | 2022-03-10 |           1
+       3 |   sush |      java |     123 | 2022-04-10 |           1
 
 (4 rows)
-cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=2 and stud_name='trivedi' and book_name='bda' and book_id=122 and issue_date='2022-04-06';
+cqlsh:library_214> update lib_info set counter_val=counter_val+1 where stud_id=2 and stud_name='adil' and book_name='bda' and book_id=122 and issue_date='2022-04-06';
 cqlsh:library_214> select * from lib_info;
 
  stud_id | stud_name | book_name | book_id | issue_date | counter_val
 ---------+-----------+-----------+---------+------------+-------------
-       1 |     rohit |      oomd |     121 | 2022-05-06 |           1
-       2 |   trivedi |       bda |     122 | 2022-04-06 |           2
-       4 |    nikhil |        ml |     124 | 2022-03-10 |           1
-       3 |   swaroop |      java |     123 | 2022-04-10 |           1
+       1 |     ruben |      oomd |     121 | 2022-05-06 |           1
+       2 |   adil |       bda |     122 | 2022-04-06 |           2
+       4 |    rasal |        ml |     124 | 2022-03-10 |           1
+       3 |   sush |      java |     123 | 2022-04-10 |           1
 
 (4 rows)
 cqlsh:library_214> select * from lib_info where counter_val=2;
@@ -63,7 +63,7 @@ cqlsh:library_214> select * from lib_info where counter_val=2 allow filtering;
 
  stud_id | stud_name | book_name | book_id | issue_date | counter_val
 ---------+-----------+-----------+---------+------------+-------------
-       2 |   trivedi |       bda |     122 | 2022-04-06 |           2
+       2 |   adil |       bda |     122 | 2022-04-06 |           2
 
 (1 rows)
 cqlsh:library_214> copy lib_info(stud_id,counter_val,stud_name,book_name,book_id,issue_date) to '/home/bmsce/desktop/lib_data.csv';
@@ -100,10 +100,10 @@ cqlsh:library_214> select * from lib_info1;
 
  stud_id | stud_name | book_name | book_id | issue_date | counter_val
 ---------+-----------+-----------+---------+------------+-------------
-       1 |     rohit |      oomd |     121 | 2022-05-06 |           1
-       2 |   trivedi |       bda |     122 | 2022-04-06 |           2
-       4 |    nikhil |        ml |     124 | 2022-03-10 |           1
-       3 |   swaroop |      java |     123 | 2022-04-10 |           1
+       1 |     ruben |      oomd |     121 | 2022-05-06 |           1
+       2 |   adil |       bda |     122 | 2022-04-06 |           2
+       4 |    rasal |        ml |     124 | 2022-03-10 |           1
+       3 |   sush |      java |     123 | 2022-04-10 |           1
 
 (4 rows)
 cqlsh:library_214> 
