@@ -72,21 +72,21 @@ cqlsh:employee_214> select * from emp_info;
 
  emp_id | salary | dept_name  | designation | doj                             | emp_name
 --------+--------+------------+-------------+---------------------------------+----------
-      1 |   5000 |     webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Rohit
-      2 |  10000 | datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Surya
-      3 |  1e+05 |  marketing |         COE | 2019-04-09 18:30:00.000000+0000 |   suresh
+      1 |   5000 |     webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Ruben
+      2 |  10000 | datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Sanjay
+      3 |  1e+05 |  marketing |         COE | 2019-04-09 18:30:00.000000+0000 |   sunil
 
 (3 rows)
-cqlsh:employee_214> update emp_info set emp_name='rahul', dept_name='advertising' where emp_id=3;
+cqlsh:employee_214> update emp_info set emp_name='rajesh', dept_name='advertising' where emp_id=3;
 InvalidRequest: Error from server: code=2200 [Invalid query] message="Some clustering keys are missing: salary"
 cqlsh:employee_214> update emp_info set emp_name='rahul', dept_name='advertising' where emp_id=3 and salary=100000;
 cqlsh:employee_214> select * from emp_info;
 
  emp_id | salary | dept_name   | designation | doj                             | emp_name
 --------+--------+-------------+-------------+---------------------------------+----------
-      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Rohit
-      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Surya
-      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rahul
+      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Ruben
+      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Sanjay
+      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |   rajesh
 
 (3 rows)
 cqlsh:employee_214> select * from emp_info order by salary desc;
@@ -99,8 +99,8 @@ cqlsh:employee_214> select * from emp_info;
  emp_id | salary | dept_name   | designation | doj                             | emp_name | projects
 --------+--------+-------------+-------------+---------------------------------+----------+----------
       1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Rohit |     null
-      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Surya |     null
-      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rahul |     null
+      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Sanjay |     null
+      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |   rajesh |     null
 
 (3 rows)
 cqlsh:employee_214> update emp_info set projects={'data science'} where emp_id=1;
@@ -112,11 +112,11 @@ cqlsh:employee_214> select * from emp_info;
 
  emp_id | salary | dept_name   | designation | doj                             | emp_name | projects
 --------+--------+-------------+-------------+---------------------------------+----------+------------------------
-      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Rohit |       {'data science'}
+      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Ruben |       {'data science'}
       2 |   1000 |        null |        null |                            null |     null | {'crypto', 'security'}
-      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Surya |                   null
+      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Sanjay |                   null
       3 |  10000 |        null |        null |                            null |     null |         {'mobile app'}
-      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rahul |                   null
+      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rajesh |                   null
 
 (5 rows)
 cqlsh:employee_214> delete from emp_info where emp_id=2 and salary=1000;
@@ -124,10 +124,10 @@ cqlsh:employee_214> select * from emp_info;
 
  emp_id | salary | dept_name   | designation | doj                             | emp_name | projects
 --------+--------+-------------+-------------+---------------------------------+----------+------------------
-      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Rohit | {'data science'}
-      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Surya |             null
+      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Ruben | {'data science'}
+      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Sanjay |             null
       3 |  10000 |        null |        null |                            null |     null |   {'mobile app'}
-      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rahul |             null
+      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rajesh |             null
 
 (4 rows)
 cqlsh:employee_214> delete from emp_info where emp_id=3 and salary=10000;
@@ -135,9 +135,9 @@ cqlsh:employee_214> select * from emp_info;
 
  emp_id | salary | dept_name   | designation | doj                             | emp_name | projects
 --------+--------+-------------+-------------+---------------------------------+----------+------------------
-      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Rohit | {'data science'}
-      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Surya |             null
-      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rahul |             null
+      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Ruben | {'data science'}
+      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Sanjay |             null
+      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |   rajesh |             null
 
 (3 rows)
 cqlsh:employee_214> update emp_info set projects={'security','crypto'} where emp_id=2 and salary=10000;
@@ -146,9 +146,9 @@ cqlsh:employee_214> select * from emp_info;
 
  emp_id | salary | dept_name   | designation | doj                             | emp_name | projects
 --------+--------+-------------+-------------+---------------------------------+----------+------------------------
-      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Rohit |       {'data science'}
-      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Surya | {'crypto', 'security'}
-      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |    rahul |         {'mobile app'}
+      1 |   5000 |      webdev |     manager | 2021-02-11 18:30:00.000000+0000 |   Ruben |       {'data science'}
+      2 |  10000 |  datacenter |       clerk | 2022-03-21 18:30:00.000000+0000 |   Sanjay | {'crypto', 'security'}
+      3 |  1e+05 | advertising |         COE | 2019-04-09 18:30:00.000000+0000 |   rajesh |         {'mobile app'}
 
 (3 rows)
 cqlsh:employee_214> insert into emp_info(emp_id,emp_name,designation,DOJ,salary,dept_name) values(4,'rakesh','intern','2022-04-19',1000,'marketing',{'data science'}) using TTL 18;
